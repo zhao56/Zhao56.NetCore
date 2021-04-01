@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CC311025-2411-4787-9AA8-B54F3F864E1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{49D8313B-4B47-45CD-A815-3C3C168E4C33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zhao56.WebApi", "Zhao56.WebApi\Zhao56.WebApi.csproj", "{09556F9F-1930-43B4-8176-A13854EC720A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09556F9F-1930-43B4-8176-A13854EC720A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09556F9F-1930-43B4-8176-A13854EC720A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09556F9F-1930-43B4-8176-A13854EC720A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09556F9F-1930-43B4-8176-A13854EC720A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{09556F9F-1930-43B4-8176-A13854EC720A} = {CC311025-2411-4787-9AA8-B54F3F864E1E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CD4AB88-711A-4FC4-94D7-F5BF2CC4C69A}
+	EndGlobalSection
+EndGlobal
