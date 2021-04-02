@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Zhao56.Core.Configuration;
 
 namespace Zhao56.WebApi
 {
@@ -26,7 +27,8 @@ namespace Zhao56.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            //初始化配置信息
+            AppSettings.Init(services, Configuration);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
