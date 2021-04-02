@@ -14,6 +14,7 @@ namespace Zhao56.Core.BaseProvider
     /// </summary>
     public abstract class BaseRepository<TEntity> where TEntity:BaseEntity
     {
+
         private EFContext defaultContext { get; set; }
         public BaseRepository()
         {
@@ -24,12 +25,10 @@ namespace Zhao56.Core.BaseProvider
         {
             defaultContext = dbContext ?? throw new Exception("dbContext未实例化");
         }
-
-        private EFContext EFContext
+        public virtual EFContext EFContext
         {
             get { return defaultContext; }
         }
-
         private DbSet<TEntity> DBSet
         {
             get { return EFContext.Set<TEntity>(); }

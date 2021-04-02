@@ -35,3 +35,15 @@ D:\study\study\Zhao56.NetCore\Zhao56.WebApi\obj\Debug\net5.0\Zhao56.WebApi.dll
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\obj\Debug\net5.0\ref\Zhao56.WebApi.dll
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\obj\Debug\net5.0\Zhao56.WebApi.pdb
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\obj\Debug\net5.0\Zhao56.WebApi.genruntimeconfig.cache
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Microsoft.AspNetCore.Server.Kestrel.Https.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Zhao56.Core.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\Zhao56.Core.pdb

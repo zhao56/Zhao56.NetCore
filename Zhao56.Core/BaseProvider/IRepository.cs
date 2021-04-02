@@ -15,7 +15,7 @@ namespace Zhao56.Core.BaseProvider
     public interface IRepository<TEntity> where TEntity:BaseEntity
     {
 
-        public EFContext context { get; }
+        EFContext EFContext { get; }
 
 
     }

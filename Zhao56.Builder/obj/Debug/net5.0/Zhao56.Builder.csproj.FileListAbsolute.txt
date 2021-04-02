@@ -1,0 +1,15 @@
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\bin\Debug\net5.0\Zhao56.Builder.deps.json
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\bin\Debug\net5.0\Zhao56.Builder.dll
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\bin\Debug\net5.0\ref\Zhao56.Builder.dll
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\bin\Debug\net5.0\Zhao56.Builder.pdb
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\bin\Debug\net5.0\Zhao56.Core.dll
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\bin\Debug\net5.0\Zhao56.Core.pdb
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\obj\Debug\net5.0\Zhao56.Builder.csprojAssemblyReference.cache
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\obj\Debug\net5.0\Zhao56.Builder.GeneratedMSBuildEditorConfig.editorconfig
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\obj\Debug\net5.0\Zhao56.Builder.AssemblyInfoInputs.cache
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\obj\Debug\net5.0\Zhao56.Builder.AssemblyInfo.cs
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\obj\Debug\net5.0\Zhao56.Builder.csproj.CoreCompileInputs.cache
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\obj\Debug\net5.0\Zhao56.Builder.csproj.CopyComplete
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\obj\Debug\net5.0\Zhao56.Builder.dll
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\obj\Debug\net5.0\ref\Zhao56.Builder.dll
+D:\study\study\Zhao56.NetCore\Zhao56.Builder\obj\Debug\net5.0\Zhao56.Builder.pdb
