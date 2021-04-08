@@ -10,7 +10,7 @@ using Zhao56.Core.BaseProvider;
 
 namespace Zhao56.Builder.Services
 {
-    public partial class SysTableInfoService:BaseService<sys_tableInfo, ISysTableInfoRepository>, ISysTableInfoService
+    public partial class SysTableInfoService:BaseService<sys_tableInfo, ISysTableInfoRepository>, ISysTableInfoService, IDependency
     {
         public SysTableInfoService(ISysTableInfoRepository repository) : base(repository)
         {

@@ -10,19 +10,12 @@ using Zhao56.Core.EFDbContext;
 
 namespace Zhao56.Builder.Repositories.core
 {
-    public partial class SysTableInfoRepository : BaseRepository<sys_tableInfo>, ISysTableInfoRepository
+    public partial class SysTableInfoRepository : BaseRepository<sys_tableInfo>, ISysTableInfoRepository, IDependency
     {
         public SysTableInfoRepository(EFContext dbContext)
         : base(dbContext)
         {
 
-        }
-        public static ISysTableInfoRepository GetService
-        {
-            get {
-                //return AutofacContainerModule.GetService<ISysTableInfoRepository>(); 
-                return new SysTableInfoRepository(new EFContext());
-            }
         }
     }
 }

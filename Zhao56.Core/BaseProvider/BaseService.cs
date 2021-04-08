@@ -19,5 +19,13 @@ namespace Zhao56.Core.BaseProvider
             this.repository = repository;
         }
 
+
+        public virtual ServiceResponseModel GetPageData(PageDataOptions pageData)
+        {
+            ServiceResponseModel result = new ServiceResponseModel();
+            var w = repository.GetAllAsync();
+            return result;
+        }
+
     }
 }

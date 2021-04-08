@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
@@ -11,7 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Zhao56.Core.BaseProvider;
 using Zhao56.Core.Configuration;
+using Zhao56.Core.Extensions.Controller;
 
 namespace Zhao56.WebApi
 {
@@ -29,6 +32,8 @@ namespace Zhao56.WebApi
         {
             //初始化配置信息
             AppSettings.Init(services, Configuration);
+            services.BatchRegisterService(ServiceLifetime.Scoped);
+            services.AddDbContexts();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -43,7 +48,7 @@ namespace Zhao56.WebApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Zhao56.WebApi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Zhao56.WebApi"));
             }
 
             app.UseHttpsRedirection();

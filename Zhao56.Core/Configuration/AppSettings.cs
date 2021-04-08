@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System.IO;
+using Zhao56.Core.Const;
 
 namespace Zhao56.Core.Configuration
 {
@@ -11,6 +13,11 @@ namespace Zhao56.Core.Configuration
     }
     public static class AppSettings
     {
+
+        public static string DbConnectionString
+        {
+            get { return _connection.DbConnectionString; }
+        }
         private static Connection _connection;
         public static void Init(IServiceCollection services, IConfiguration configuration)
         {
@@ -19,7 +26,10 @@ namespace Zhao56.Core.Configuration
             //获取赋值
             var builder = services.BuildServiceProvider();
             //GetRequiredService 和 GetService 区别是前者如果没有则异常，后者默认返回空
-            _connection = builder.GetRequiredService<Connection>();
+            _connection = builder.GetRequiredService<IOptions<Connection>>().Value;
+            DBType.Name = _connection.DBType;
+            if (string.IsNullOrEmpty(_connection.DbConnectionString))
+                throw new System.Exception("未配置好数据库默认连接");
         }
     }
 }

@@ -14,24 +14,18 @@ namespace Zhao56.Core.BaseProvider
     /// </summary>
     public abstract class BaseRepository<TEntity> where TEntity:BaseEntity
     {
+        protected EFContext Context { get; }
 
-        private EFContext defaultContext { get; set; }
-        public BaseRepository()
+        protected DbSet<TEntity> Set => Context.Set<TEntity>();
+
+        public BaseRepository(EFContext context)
         {
-            //todo 获取默认的context
+            Context = context;
         }
 
-        public BaseRepository(EFContext dbContext)
+        public async Task<IList<TEntity>> GetAllAsync()
         {
-            defaultContext = dbContext ?? throw new Exception("dbContext未实例化");
-        }
-        public virtual EFContext EFContext
-        {
-            get { return defaultContext; }
-        }
-        private DbSet<TEntity> DBSet
-        {
-            get { return EFContext.Set<TEntity>(); }
+            return await Set.AsNoTracking().ToListAsync();
         }
     }
 }

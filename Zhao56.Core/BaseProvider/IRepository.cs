@@ -14,9 +14,7 @@ namespace Zhao56.Core.BaseProvider
     /// <typeparam name="TEntity"></typeparam>
     public interface IRepository<TEntity> where TEntity:BaseEntity
     {
-
-        EFContext EFContext { get; }
-
+        Task<IList<TEntity>> GetAllAsync();
 
     }
 }
