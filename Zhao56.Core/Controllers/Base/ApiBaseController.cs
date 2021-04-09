@@ -17,20 +17,16 @@ namespace Zhao56.Core.Controllers.Base
     [ApiController]
     public class ApiBaseController<IServiceBase> : Controller
     {
-        protected WebJsonResult JsonResult(ServiceResponseModel model)
-        {
-            return new WebJsonResult(model);
-        }
         protected IServiceBase _service;
 
         public ApiBaseController(IServiceBase service)
         {
             this._service = service;
         }
-        [HttpPost,HttpGet, Route("GetPageData")]
-        public virtual WebJsonResult GetPageData(PageDataOptions options)
+        [HttpPost, Route("GetPageData")]
+        public virtual ActionResult GetPageData(PageDataOptions options)
         {
-            return JsonResult(InvokeService("GetPageData", new object[] { options }).ServiceResultToWebResult());
+            return Content(InvokeService("GetPageData", new object[] { options }).ObjectToJson());
         }
 
         private object InvokeService(string methodName, object[] parameters)

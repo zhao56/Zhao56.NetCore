@@ -1,0 +1,9 @@
+D:\study\study\Zhao56.NetCore\Zhao56.System\bin\Debug\netcoreapp3.1\Zhao56.System.deps.json
+D:\study\study\Zhao56.NetCore\Zhao56.System\bin\Debug\netcoreapp3.1\Zhao56.System.dll
+D:\study\study\Zhao56.NetCore\Zhao56.System\bin\Debug\netcoreapp3.1\Zhao56.System.pdb
+D:\study\study\Zhao56.NetCore\Zhao56.System\obj\Debug\netcoreapp3.1\Zhao56.System.csprojAssemblyReference.cache
+D:\study\study\Zhao56.NetCore\Zhao56.System\obj\Debug\netcoreapp3.1\Zhao56.System.AssemblyInfoInputs.cache
+D:\study\study\Zhao56.NetCore\Zhao56.System\obj\Debug\netcoreapp3.1\Zhao56.System.AssemblyInfo.cs
+D:\study\study\Zhao56.NetCore\Zhao56.System\obj\Debug\netcoreapp3.1\Zhao56.System.csproj.CoreCompileInputs.cache
+D:\study\study\Zhao56.NetCore\Zhao56.System\obj\Debug\netcoreapp3.1\Zhao56.System.dll
+D:\study\study\Zhao56.NetCore\Zhao56.System\obj\Debug\netcoreapp3.1\Zhao56.System.pdb

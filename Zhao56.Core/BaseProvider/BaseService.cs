@@ -8,23 +8,35 @@ using Zhao56.Core.TransResponse;
 
 namespace Zhao56.Core.BaseProvider
 {
-    public abstract class BaseService<T, TRepository>where T: BaseEntity where TRepository: IRepository<T>
+    public abstract class BaseService<T,DTO, TRepository>where T: BaseEntity where TRepository: IRepository<T> where DTO : DTOBase, new()
     {
         protected IRepository<T> repository;
-        private ServiceResponseModel Response { get; set; }
+        private ResponseBase Response { get; set; }
 
         public BaseService() { }
         public BaseService(TRepository repository) {
-            Response = new ServiceResponseModel(true);
+            Response = new ResponseBase();
             this.repository = repository;
         }
-
-
-        public virtual ServiceResponseModel GetPageData(PageDataOptions pageData)
+        protected ResponseBase Result(Object value)
         {
-            ServiceResponseModel result = new ServiceResponseModel();
-            var w = repository.GetAllAsync();
-            return result;
+            Response.IsSuccess = true;
+            Response.Value = value;
+            return Response;
+        }
+
+        public virtual ResponseBase GetPageData(PageDataOptions pageData)
+        {
+            var list = repository.GetAll();
+            var result = new List<DTO>();
+            if (list!=null&& list.Count>0)
+            {
+                foreach (var item in list)
+                {
+                    result.Add(item.ConvertEntityToDto<DTO>());
+                }
+            }
+            return Result(result);
         }
 
     }

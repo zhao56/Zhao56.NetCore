@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Zhao56.System/1.0.0": {
+        "runtime": {
+          "Zhao56.System.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Zhao56.System/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

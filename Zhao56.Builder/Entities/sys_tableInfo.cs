@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zhao56.Builder.Services.Dto;
 using Zhao56.Core.BaseModel;
 
 namespace Zhao56.Builder.Entities
@@ -51,6 +52,5 @@ namespace Zhao56.Builder.Entities
 
         
         public string CnName { get; set; }
-
     }
 }

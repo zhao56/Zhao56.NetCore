@@ -14,18 +14,18 @@ namespace Zhao56.Core.BaseProvider
     /// </summary>
     public abstract class BaseRepository<TEntity> where TEntity:BaseEntity
     {
-        protected EFContext Context { get; }
+        protected DbContext Context { get; }
 
         protected DbSet<TEntity> Set => Context.Set<TEntity>();
 
-        public BaseRepository(EFContext context)
+        public BaseRepository(DbContext context)
         {
             Context = context;
         }
 
-        public async Task<IList<TEntity>> GetAllAsync()
+        public IList<TEntity> GetAll()
         {
-            return await Set.AsNoTracking().ToListAsync();
+            return Set.ToList();
         }
     }
 }

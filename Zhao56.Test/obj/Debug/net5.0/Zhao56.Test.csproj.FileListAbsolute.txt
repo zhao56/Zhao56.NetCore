@@ -16,6 +16,7 @@ D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Microsoft.AspNetCore.
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Microsoft.AspNetCore.TestHost.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Microsoft.Bcl.HashCode.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -125,4 +126,3 @@ D:\study\study\Zhao56.NetCore\Zhao56.Test\obj\Debug\net5.0\Zhao56.Test.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\obj\Debug\net5.0\ref\Zhao56.Test.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\obj\Debug\net5.0\Zhao56.Test.pdb
 D:\study\study\Zhao56.NetCore\Zhao56.Test\obj\Debug\net5.0\Zhao56.Test.genruntimeconfig.cache
-D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Microsoft.Bcl.HashCode.dll

@@ -93,8 +93,9 @@ namespace Zhao56.Core.Extensions.Controller
                 //{
                 //    context.Database.Migrate();
                 //}
-                services.AddDbContext<EFContext>(optionsBuilder => { object p = optionsBuilder.UseMySql(AppSettings.DbConnectionString); });
+                services.AddDbContext<EFContext>(optionsBuilder => optionsBuilder.UseMySql(AppSettings.DbConnectionString));
             }
+            //services.AddDatabaseDeveloperPageExceptionFilter();
             return services;
         }
     }

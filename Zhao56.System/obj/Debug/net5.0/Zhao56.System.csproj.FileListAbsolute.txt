@@ -2,7 +2,6 @@ D:\study\study\Zhao56.NetCore\Zhao56.System\bin\Debug\net5.0\Zhao56.System.deps.
 D:\study\study\Zhao56.NetCore\Zhao56.System\bin\Debug\net5.0\Zhao56.System.dll
 D:\study\study\Zhao56.NetCore\Zhao56.System\bin\Debug\net5.0\ref\Zhao56.System.dll
 D:\study\study\Zhao56.NetCore\Zhao56.System\bin\Debug\net5.0\Zhao56.System.pdb
-D:\study\study\Zhao56.NetCore\Zhao56.System\obj\Debug\net5.0\Zhao56.System.csprojAssemblyReference.cache
 D:\study\study\Zhao56.NetCore\Zhao56.System\obj\Debug\net5.0\Zhao56.System.GeneratedMSBuildEditorConfig.editorconfig
 D:\study\study\Zhao56.NetCore\Zhao56.System\obj\Debug\net5.0\Zhao56.System.AssemblyInfoInputs.cache
 D:\study\study\Zhao56.NetCore\Zhao56.System\obj\Debug\net5.0\Zhao56.System.AssemblyInfo.cs
