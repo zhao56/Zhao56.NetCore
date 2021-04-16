@@ -3,22 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zhao56.Core.BaseModel.Paging;
 
 namespace Zhao56.Core.BaseModel
 {
     public class PageDataOptions
     {
-        public int Page { get; set; }
-        public int Rows { get; set; }
-        /// <summary>
-        /// 排序字段
-        /// </summary>
-        public string Sort { get; set; }
-       /// <summary>
-       /// 排序方式
-       /// </summary>
-        public string Order { get; set; }
-        //List<SearchParameters> searchParameters { get; set; }
+        public Pager Pager { get; set; }
+        public List<OrderParameters> Orders { get; set; }
+        public List<SearchParameters> Wheres { get; set; }
     }
 
     public class SearchParameters
@@ -26,5 +19,10 @@ namespace Zhao56.Core.BaseModel
         public string Name { get; set; }
         public string Value { get; set; }
         public string OpType { get; set; }
+    }
+    public class OrderParameters
+    {
+        public string Name { get; set; }
+        public bool IsAsc { get; set; }
     }
 }

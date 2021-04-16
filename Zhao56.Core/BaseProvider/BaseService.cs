@@ -1,101 +1,134 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Zhao56.Core.BaseModel;
+using Zhao56.Core.BaseModel.Orders;
+using Zhao56.Core.BaseModel.Paging;
+using Zhao56.Core.Enums;
+using Zhao56.Core.Extensions;
+using Zhao56.Core.Paging;
 using Zhao56.Core.TransResponse;
 
 namespace Zhao56.Core.BaseProvider
 {
-    public abstract class BaseService<T,DTO, TRepository>where T: BaseEntity where TRepository: IRepository<T> where DTO : DTOBase
+    public abstract class BaseService<T, TRepository> where T : BaseEntity where TRepository : IRepository<T>
     {
         protected IRepository<T> repository;
         protected ResponseBase Response;
         public BaseService() { }
-        public BaseService(TRepository repository) {
+        public BaseService(TRepository repository)
+        {
             Response = new ResponseBase();
             this.repository = repository;
         }
         protected ResponseBase Result(Object value)
         {
             Response.IsSuccess = true;
-            Response.Value = value;
+            Response.Result = value;
             return Response;
         }
+        protected PageResponse<T> PageResult(IPagedList<T> value)
+        {
+            PageResponse<T> pageResponse = new PageResponse<T>();
+            pageResponse.IsSuccess = true;
+            pageResponse.Result = value;
+            return pageResponse;
+        }
+
+
+        public virtual PageResponse<T> GetPageData(PageDataOptions request)
+        {
+            var props = typeof(T).GetProperties();
+            //过滤掉参数名不正确的
+            var conditions = request.Wheres.Where(w => props.Select(t => t.Name.ToUpper()).Contains(w.Name.ToUpper()));
+            //传入条件转换为表达式目录树
+            Expression<Func<T, bool>> query = PressCondition(conditions);
+            IOrder<T> order = PressOrders(request.Orders);
+            var pageData = repository.GetPageData(query, order, request.Pager);
+            return PageResult(pageData);
+        }
         /// <summary>
-        /// 通过反射转换对应的DTO
+        /// 多条件排序
         /// </summary>
-        /// <typeparam name="DTO"></typeparam>
+        /// <param name="orders"></param>
         /// <returns></returns>
-        protected virtual DTO ConvertEntityToDto(T t)
+        private IOrder<T> PressOrders(IEnumerable<OrderParameters> orders)
         {
-            DTO dto = Activator.CreateInstance<DTO>();
-            if (t == null)
+            IOrder<T> iOrder = new Order<T>();
+            var parameter = Expression.Parameter(typeof(T), "p");
+            foreach (var order in orders)
             {
-                return default(DTO);
+                var temp = Expression.Lambda<Func<T, Object>>(ParseOrderExpressionBody(order, parameter));
+                iOrder.ApplyOrderBy<T>(temp, order.IsAsc ? QueryOrderBy.Asc : QueryOrderBy.Desc);
             }
-            Type entityType = t.GetType();
-            var toProps = dto.GetType().GetProperties();
-            foreach (var property in toProps)
-            {
-                PropertyInfo pi = entityType.GetProperty(property.Name);
-                if (pi != null)
-                {
-                    if (pi.PropertyType == property.PropertyType)
-                    {
-                        property.SetValue(dto, pi.GetValue(t, null));
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("转换类型失败");
-                    }
-                }
-            }
-            return dto;
+            
+            return iOrder;
         }
 
-        protected virtual T ConvertDtoToEntity(DTO dto)
+
+
+        /// <summary>
+        /// 排序转换为表达式
+        /// </summary>
+        /// <param name="conditions"></param>
+        /// <returns></returns>
+        private Expression<Func<T, bool>> PressCondition(IEnumerable<SearchParameters> conditions)
         {
-            T t = Activator.CreateInstance<T>();
-            if (dto == null)
+            //将条件转化成表达是的Body
+            var parameter = Expression.Parameter(typeof(T), "p");
+            var query = ParseExpressionBody(conditions, parameter);
+            return Expression.Lambda<Func<T, bool>>(query, parameter);
+        }
+        /// <summary>
+        /// 条件转换为表达式
+        /// </summary>
+        /// <param name="conditions"></param>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        private Expression ParseExpressionBody(IEnumerable<SearchParameters> conditions, ParameterExpression parameter)
+        {
+            if (conditions == null || conditions.Count() == 0)
             {
-                return t;
+                return Expression.Constant(true, typeof(bool));
             }
-            Type entityType = dto.GetType();
-            var toProps = t.GetType().GetProperties();
-            foreach (var property in toProps)
+            else if (conditions.Count() == 1)
             {
-                PropertyInfo pi = entityType.GetProperty(property.Name);
-                if (pi != null)
+                var first = conditions.First();
+                Expression first1 = first.Name.CreateConditionExpression(first.Value, parameter, first.OpType.StringToEfOpType());
+                return first1;
+            }
+            else
+            {
+                var first = conditions.First();
+                Expression queryExpression = first.Name.CreateConditionExpression(first.Value, parameter, first.OpType.StringToEfOpType());
+                int i = 0;
+                foreach (var item in conditions)
                 {
-                    if (pi.PropertyType == property.PropertyType)
+                    if (i++ == 1)//刨除第一个元素
                     {
-                        property.SetValue(dto, pi.GetValue(dto, null));
+                        continue;
                     }
-                    else
-                    {
-                        throw new InvalidOperationException("转换类型失败");
-                    }
+                    queryExpression = Expression.AndAlso(queryExpression, item.Name.CreateConditionExpression(item.Value, parameter, item.OpType.StringToEfOpType()));
                 }
+                return queryExpression;
             }
-            return t;
         }
 
-        public virtual ResponseBase GetPageData(PageDataOptions pageData)
+        private Expression ParseOrderExpressionBody(OrderParameters condition, ParameterExpression parameter)
         {
-            var list = repository.GetAll();
-            var result = new List<DTO>();
-            if (list!=null&& list.Count>0)
+            if (condition == null)
             {
-                foreach (var item in list)
-                {
-                    result.Add(ConvertEntityToDto(item));
-                }
+                return Expression.Constant(true, typeof(bool));
             }
-            return Result(result);
+            else
+            {
+                Expression queryExpression = condition.Name.CreateOrdersExpression(parameter);
+                return queryExpression;
+            }
         }
-
     }
 }

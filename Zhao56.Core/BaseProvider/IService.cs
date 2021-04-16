@@ -8,8 +8,8 @@ using Zhao56.Core.TransResponse;
 
 namespace Zhao56.Core.BaseProvider
 {
-    public interface IService<T, DTO> where T : BaseEntity where DTO: DTOBase
+    public interface IService<T> where T : BaseEntity 
     {
-        ResponseBase GetPageData(PageDataOptions pageData);
+        PageResponse<T> GetPageData(PageDataOptions request);
     }
 }

@@ -32,7 +32,7 @@ namespace Zhao56.Test
                 {"Rows","10" },
                 {"Sort","1" },
                 {"Order","2" },
-                {"searchParameters",new List<SearchParameters>().ToString()}
+                //{"searchParameters",new List<SearchParameters>().ToString()}
             };
             HttpContent context = new FormUrlEncodedContent(dict);
             context.Headers.ContentType = new  MediaTypeHeaderValue("application/json");

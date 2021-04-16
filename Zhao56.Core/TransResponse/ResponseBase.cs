@@ -19,7 +19,7 @@ namespace Zhao56.Core.TransResponse
         /// <summary>
         /// 返回值 可被继承
         /// </summary>
-        public virtual object Value { get; set; }
+        public virtual object Result { get; set; }
         /// <summary>
         /// 错误码
         /// </summary>
@@ -32,7 +32,7 @@ namespace Zhao56.Core.TransResponse
         public ResponseBase(Object o)
         {
             IsSuccess = true;
-            Value = o;
+            Result = o;
         }
     }
 }
