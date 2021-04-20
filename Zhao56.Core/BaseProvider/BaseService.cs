@@ -45,9 +45,10 @@ namespace Zhao56.Core.BaseProvider
             var props = typeof(T).GetProperties();
             //过滤掉参数名不正确的
             var conditions = request.Wheres.Where(w => props.Select(t => t.Name.ToUpper()).Contains(w.Name.ToUpper()));
+            var orderConditions = request.Orders.Where(w => props.Select(t => t.Name.ToUpper()).Contains(w.Name.ToUpper()));
             //传入条件转换为表达式目录树
             Expression<Func<T, bool>> query = PressCondition(conditions);
-            IOrder<T> order = PressOrders(request.Orders);
+            IOrder<T> order = PressOrders(orderConditions);
             var pageData = repository.GetPageData(query, order, request.Pager);
             return PageResult(pageData);
         }
@@ -62,7 +63,7 @@ namespace Zhao56.Core.BaseProvider
             var parameter = Expression.Parameter(typeof(T), "p");
             foreach (var order in orders)
             {
-                var temp = Expression.Lambda<Func<T, Object>>(ParseOrderExpressionBody(order, parameter));
+                var temp = Expression.Lambda<Func<T, Object>>(ParseOrderExpressionBody(order, parameter), parameter);
                 iOrder.ApplyOrderBy<T>(temp, order.IsAsc ? QueryOrderBy.Asc : QueryOrderBy.Desc);
             }
             

@@ -61,7 +61,6 @@ namespace Zhao56.Core.Extensions
           this string propertyName,
           ParameterExpression parameter)
         {
-            Expression.Property(parameter, propertyName);
             return Expression.Property(parameter, propertyName);
         }
 
