@@ -34,5 +34,10 @@ namespace Zhao56.Core.BaseProvider
             var query = Set.Where(where).OrderExpressionToOrderedQueryable(orderSelector);
             return query.ToPagedList(pager);
         }
+        public async Task<TEntity> FindAsyncFirst(Expression<Func<TEntity, bool>> filter)
+        {
+            return await Set.Where(filter).FirstOrDefaultAsync();
+        }
+
     }
 }

@@ -21,5 +21,6 @@ namespace Zhao56.Core.BaseProvider
     {
         public IPagedList<TEntity> GetPageData(Expression<Func<TEntity, bool>> where, IOrder<TEntity> orderSelector, Pager pager);
 
+        public Task<TEntity> FindAsyncFirst(Expression<Func<TEntity, bool>> filter);
     }
 }

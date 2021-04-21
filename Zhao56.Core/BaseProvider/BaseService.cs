@@ -25,10 +25,16 @@ namespace Zhao56.Core.BaseProvider
             Response = new ResponseBase();
             this.repository = repository;
         }
-        protected ResponseBase Result(Object value)
+        protected ResponseBase OK(Object value)
         {
             Response.IsSuccess = true;
             Response.Result = value;
+            return Response;
+        }
+        protected ResponseBase Err(string msg)
+        {
+            Response.IsSuccess = false;
+            Response.Message = msg;
             return Response;
         }
         protected PageResponse<T> PageResult(IPagedList<T> value)
