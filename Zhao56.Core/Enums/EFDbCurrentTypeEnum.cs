@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zhao56.Core
 {
-    public enum DbCurrentType
+    public enum EFDbCurrentTypeEnum
     {
         MySql = 1,
     }

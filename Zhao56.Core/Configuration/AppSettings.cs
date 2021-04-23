@@ -27,7 +27,9 @@ namespace Zhao56.Core.Configuration
             var builder = services.BuildServiceProvider();
             //GetRequiredService 和 GetService 区别是前者如果没有则异常，后者默认返回空
             _connection = builder.GetRequiredService<IOptions<Connection>>().Value;
-            DBType.Name = _connection.DBType;
+            int dbType;
+            int.TryParse(_connection.DBType,out dbType);
+            DBType.Type = dbType;
             if (string.IsNullOrEmpty(_connection.DbConnectionString))
                 throw new System.Exception("未配置好数据库默认连接");
         }

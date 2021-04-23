@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Zhao56.Core.BaseProvider;
+using Zhao56.Core.BaseProvider.ServicePath;
 using Zhao56.Core.Configuration;
 using Zhao56.Core.Extensions.Controller;
 
@@ -50,7 +51,8 @@ namespace Zhao56.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Zhao56.WebApi"));
             }
-
+            //缓存环境变量
+            MyWebHostEnvironmentProvider.MyWebHostEnvironment = env;
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -12,7 +12,7 @@ namespace Zhao56.Builder.IServices
     /// </summary>
     public partial interface ISysTableInfoService
     {
-        ResponseBase CreateServices(string tableName, string nameSpace, string foldername);
+        ResponseBase CreateServices(string tableName, string foldername);
 
     }
 }

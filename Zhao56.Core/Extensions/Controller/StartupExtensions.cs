@@ -85,17 +85,10 @@ namespace Zhao56.Core.Extensions.Controller
         public static IServiceCollection AddDbContexts(this IServiceCollection services)
         {
 
-            if (DBType.Name == DbCurrentType.MySql.ToString())
+            if (DBType.Type == (int)EFDbCurrentTypeEnum.MySql)
             {
-                //var builderDb = new DbContextOptionsBuilder<EFContext>();
-                //builderDb.UseMySql(AppSettings.DbConnectionString);
-                //using (var context = new EFContext(builderDb.Options))
-                //{
-                //    context.Database.Migrate();
-                //}
                 services.AddDbContext<EFContext>(optionsBuilder => optionsBuilder.UseMySql(AppSettings.DbConnectionString));
             }
-            //services.AddDatabaseDeveloperPageExceptionFilter();
             return services;
         }
     }

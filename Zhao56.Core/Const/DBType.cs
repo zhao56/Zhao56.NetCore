@@ -8,6 +8,6 @@ namespace Zhao56.Core.Const
 {
     public static class DBType
     {
-        public static string Name { get; set; }
+        public static int Type { get; set; }
     }
 }

@@ -1,0 +1,26 @@
+﻿/*
+ *代码由框架生成,任何更改都可能导致被代码生成器覆盖
+ *Repository提供数据库操作，如果要增加数据库操作请在当前目录下Partial文件夹I{BigHumpTableName}Repository编写接口
+ */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using {Namespace}.Entities;
+using {Namespace}.IRepositories.core;
+using {StartName}.Core.BaseProvider;
+using {StartName}.Core.EFDbContext;
+
+namespace {Namespace}.Repositories
+{
+    public partial class {BigHumpTableName}Repository : BaseRepository<{TableName}>
+    , I{BigHumpTableName}Repository, IDependency
+    {
+    public Sys{BigHumpTableName}Repository(EFContext dbContext)
+    : base(dbContext)
+    {
+
+    }
+    }
+    }
