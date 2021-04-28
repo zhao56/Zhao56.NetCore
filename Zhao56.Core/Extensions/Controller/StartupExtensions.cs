@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,13 +83,25 @@ namespace Zhao56.Core.Extensions.Controller
             }
             return services;
         }
-        public static IServiceCollection AddDbContexts(this IServiceCollection services)
+        public static readonly ILoggerFactory MyLoggerFactory
+= LoggerFactory.Create(builder =>
+{
+#if DEBUG
+    builder.AddConsole();
+#endif
+});
+    public static IServiceCollection AddDbContexts(this IServiceCollection services)
         {
-
+           // services.AddLogging(builder => builder
+           //    .AddConsole()
+           //    .AddFilter(level => level >= LogLevel.Information)
+           //);
+            //var loggerFactory = services.BuildServiceProvider().GetService<ILoggerFactory>();
             if (DBType.Type == (int)EFDbCurrentTypeEnum.MySql)
             {
-                services.AddDbContext<EFContext>(optionsBuilder => optionsBuilder.UseMySql(AppSettings.DbConnectionString));
+                services.AddDbContext<EFContext>(optionsBuilder => optionsBuilder.UseMySql(AppSettings.DbConnectionString).UseLoggerFactory(MyLoggerFactory));
             }
+           
             return services;
         }
     }

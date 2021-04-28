@@ -1,15 +1,10 @@
 ﻿/*
  *代码由框架生成,任何更改都可能导致被代码生成器覆盖
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using {Namespace}.Entities;
 using {Namespace}.IRepositories;
 using {Namespace}.IServices;
-using {Namespace}.Services.Dto;
 using {StartName}.Core.BaseProvider;
 
 namespace {Namespace}.Services
@@ -17,10 +12,10 @@ namespace {Namespace}.Services
     public partial class {BigHumpTableName}Service:BaseService<{TableName}, I{BigHumpTableName}Repository>
     , I{BigHumpTableName}Service, IDependency
     {
-    public SysTableInfoService(I{BigHumpTableName}Repository repository) : base(repository)
-    {
+        public {BigHumpTableName}Service(I{BigHumpTableName}Repository repository) : base(repository)
+        {
 
+        }
     }
-    }
-    }
+}
 

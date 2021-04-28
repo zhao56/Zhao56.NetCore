@@ -1997,6 +1997,22 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Zhao56.System/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Zhao56.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Zhao56.System.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Zhao56.System.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Zhao56.WebApi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -2004,7 +2020,8 @@
           "Microsoft.Extensions.DependencyModel": "5.0.0",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Zhao56.Builder": "1.0.0",
-          "Zhao56.Core": "1.0.0"
+          "Zhao56.Core": "1.0.0",
+          "Zhao56.System": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Zhao56.WebApi.dll": {}
@@ -6557,6 +6574,11 @@
       "type": "project",
       "path": "../Zhao56.Core/Zhao56.Core.csproj",
       "msbuildProject": "../Zhao56.Core/Zhao56.Core.csproj"
+    },
+    "Zhao56.System/1.0.0": {
+      "type": "project",
+      "path": "../Zhao56.System/Zhao56.System.csproj",
+      "msbuildProject": "../Zhao56.System/Zhao56.System.csproj"
     },
     "Zhao56.WebApi/1.0.0": {
       "type": "project",

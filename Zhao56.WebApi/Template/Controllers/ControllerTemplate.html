@@ -1,0 +1,15 @@
+﻿using {Namespace}.IServices;
+using {StartName}.Core.Controllers.Base;
+using Microsoft.AspNetCore.Components;
+
+namespace {Namespace}.Controllers
+{
+    [Route("/api/{BigHumpTableName}")]
+    public partial class {BigHumpTableName}Controller : ApiBaseController<I{BigHumpTableName}Service>
+    {
+    public {BigHumpTableName}Controller(I{BigHumpTableName}Service service) : base(service)
+    {
+
+    }
+    }
+    }

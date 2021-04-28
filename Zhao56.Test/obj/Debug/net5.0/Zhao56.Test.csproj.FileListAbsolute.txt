@@ -111,11 +111,13 @@ D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\zh-Hant\Microsoft.Tes
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Zhao56.Builder.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Zhao56.Core.dll
+D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Zhao56.System.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Zhao56.WebApi.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Zhao56.WebApi.pdb
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Zhao56.WebApi.xml
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Zhao56.Builder.pdb
 D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Zhao56.Core.pdb
+D:\study\study\Zhao56.NetCore\Zhao56.Test\bin\Debug\net5.0\Zhao56.System.pdb
 D:\study\study\Zhao56.NetCore\Zhao56.Test\obj\Debug\net5.0\Zhao56.Test.csprojAssemblyReference.cache
 D:\study\study\Zhao56.NetCore\Zhao56.Test\obj\Debug\net5.0\Zhao56.Test.GeneratedMSBuildEditorConfig.editorconfig
 D:\study\study\Zhao56.NetCore\Zhao56.Test\obj\Debug\net5.0\Zhao56.Test.AssemblyInfoInputs.cache

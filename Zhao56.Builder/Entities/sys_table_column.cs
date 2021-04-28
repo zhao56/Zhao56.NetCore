@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Zhao56.Core.BaseModel;
 
 namespace Zhao56.Builder.Entities
 {
     [Table("Sys_TableColumn")]
-    public class sys_table_column
+    public class sys_table_column : BaseEntity
     {
-        /// <summary>
-        ///
-        /// <summary>
+        [Key]
         public int Table_Id { get; set; }
 
         

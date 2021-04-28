@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using {Namespace}.Entities;
-using {Namespace}.IRepositories.core;
+using {Namespace}.IRepositories;
 using {StartName}.Core.BaseProvider;
 using {StartName}.Core.EFDbContext;
 
@@ -17,10 +17,10 @@ namespace {Namespace}.Repositories
     public partial class {BigHumpTableName}Repository : BaseRepository<{TableName}>
     , I{BigHumpTableName}Repository, IDependency
     {
-    public Sys{BigHumpTableName}Repository(EFContext dbContext)
-    : base(dbContext)
-    {
+        public {BigHumpTableName}Repository(EFContext dbContext)
+        : base(dbContext)
+        {
 
-    }
+        }
     }
     }

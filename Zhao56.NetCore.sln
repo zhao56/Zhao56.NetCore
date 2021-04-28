@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zhao56.Builder", "Zhao56.Bu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zhao56.System", "Zhao56.System\Zhao56.System.csproj", "{E071D43B-296F-4515-BAB6-A66A59B835E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zhao56.Test", "Zhao56.Test\Zhao56.Test.csproj", "{95E4057A-C298-4A3A-B85F-11690BE3BC2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zhao56.Test", "Zhao56.Test\Zhao56.Test.csproj", "{95E4057A-C298-4A3A-B85F-11690BE3BC2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

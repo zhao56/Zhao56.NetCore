@@ -18,7 +18,7 @@ namespace Zhao56.Core.Utils
         {
             if (string.IsNullOrEmpty(parm)) return "";
             parm = parm.Substring(0, 1).ToUpper() + parm.Substring(1);
-            Regex reg = new Regex("_([a-z])");
+            Regex reg = new Regex("_([A-Za-z0-9])");
             var matchs =  reg.Matches(parm).Distinct();
             foreach (var match in matchs)
             {

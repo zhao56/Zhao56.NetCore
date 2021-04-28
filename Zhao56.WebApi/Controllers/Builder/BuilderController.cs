@@ -12,9 +12,16 @@ using Zhao56.Core.TransResponse;
 
 namespace Zhao56.WebApi.Controllers
 {
+    /// <summary>
+    /// 代码生成器
+    /// </summary>
     [Route("/api/Builder")]
     public class BuilderController : ApiBaseController<ISysTableInfoService>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="service"></param>
         public BuilderController(ISysTableInfoService service):base(service)
         {
 
@@ -23,13 +30,12 @@ namespace Zhao56.WebApi.Controllers
         /// 创建文件
         /// </summary>
         /// <param name="tableName"></param>
-        /// <param name="foldername"></param>
         /// <returns></returns>
         [Route("CreateServices")]
         [HttpPost]
-        public ActionResult CreateServices(string tableName, string foldername)
+        public ResponseBase CreateServices(string tableName)
         {
-            return Content(_service.CreateServices(tableName, foldername).ObjectToJson());
+            return _service.CreateServices(tableName);
         }
     }
 }

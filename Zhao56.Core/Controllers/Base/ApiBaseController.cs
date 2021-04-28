@@ -26,7 +26,7 @@ namespace Zhao56.Core.Controllers.Base
         [HttpPost, Route("GetPageData")]
         public virtual ActionResult GetPageData(PageDataOptions options)
         {
-            return Content(InvokeService("GetPageData", new object[] { options }).ObjectToJson());
+            return Json(InvokeService("GetPageData", new object[] { options }));
         }
 
         private object InvokeService(string methodName, object[] parameters)

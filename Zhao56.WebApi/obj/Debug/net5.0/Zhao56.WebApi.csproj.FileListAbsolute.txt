@@ -59,8 +59,10 @@ D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\net5.0\Swashbuckle.
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\net5.0\Zhao56.Builder.dll
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\net5.0\Zhao56.Core.dll
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\net5.0\Zhao56.System.dll
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\net5.0\Zhao56.Builder.pdb
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\net5.0\Zhao56.Core.pdb
+D:\study\study\Zhao56.NetCore\Zhao56.WebApi\bin\Debug\net5.0\net5.0\Zhao56.System.pdb
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\obj\Debug\net5.0\Zhao56.WebApi.csprojAssemblyReference.cache
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\obj\Debug\net5.0\Zhao56.WebApi.GeneratedMSBuildEditorConfig.editorconfig
 D:\study\study\Zhao56.NetCore\Zhao56.WebApi\obj\Debug\net5.0\Zhao56.WebApi.AssemblyInfoInputs.cache

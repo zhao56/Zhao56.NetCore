@@ -52,8 +52,5 @@ namespace Zhao56.Builder.Entities
 
         
         public string CnName { get; set; }
-
-        [ForeignKey("Table_Id")]
-        public List<sys_table_column> TableColumns { get; set; }
     }
 }

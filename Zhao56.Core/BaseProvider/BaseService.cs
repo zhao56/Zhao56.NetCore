@@ -31,7 +31,7 @@ namespace Zhao56.Core.BaseProvider
             Response.Result = null;
             return Response;
         }
-        protected ResponseBase OK(T value)
+        protected ResponseBase OK<TResult>(TResult value)where TResult:class,new()
         {
             Response.IsSuccess = true;
             Response.Result = value;

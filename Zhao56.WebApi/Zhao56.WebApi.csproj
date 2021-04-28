@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Zhao56.Builder\Zhao56.Builder.csproj" />
     <ProjectReference Include="..\Zhao56.Core\Zhao56.Core.csproj" />
+    <ProjectReference Include="..\Zhao56.System\Zhao56.System.csproj" />
   </ItemGroup>
 
 </Project>

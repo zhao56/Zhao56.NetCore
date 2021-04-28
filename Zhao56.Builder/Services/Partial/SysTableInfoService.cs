@@ -6,7 +6,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
+using System.Text;
 using Zhao56.Builder.Entities;
+using Zhao56.Builder.IRepositories.core;
 using Zhao56.Core;
 using Zhao56.Core.BaseModel;
 using Zhao56.Core.Const;
@@ -17,44 +19,86 @@ namespace Zhao56.Builder.Services
 {
     public partial class SysTableInfoService
     {
-
-        public ResponseBase CreateEntity(sys_tableInfo sysTableInfo)
+        ISysTableColumnRepository _columRepository;
+        public string GetCSharpTypeFromDbType(string type)
         {
-            if (sysTableInfo==null|| sysTableInfo.TableColumns==null|| sysTableInfo.TableColumns.Count==0)
+            switch (type.ToUpper())
+            {
+                case "CHAR":
+                case "NCHAR":
+                case "VARCHAR2":
+                case "NVARCHAR2":
+                    return "string";
+                case "INTEGER":
+                    return "int";
+                case "NUMBER":
+                    return "decimal";
+                case "FLOAT":
+                    return "double";
+                case "LONG":
+                case "CLOB":
+                case "NCLOB":
+                    return "string";
+                case "BLOB":
+                    return "byte[]";
+                case "DATE":
+                case "TIMESTAMP":
+                    return "DateTime";
+                default:
+                    return "string";
+            }
+        }
+        public SysTableInfoService(ISysTableInfoRepository repository, ISysTableColumnRepository columRepository) : base(repository)
+        {
+            _columRepository = columRepository;
+        }
+        public ResponseBase CheckEntityAndGetColum(sys_tableInfo sysTableInfo,ref string attributeBuilderString)
+        {
+            if (sysTableInfo==null)
             {
                 return Err("生成实体入参不完整");
             }
-            if (string.IsNullOrEmpty(sysTableInfo.TableTrueName))
+            if (string.IsNullOrEmpty(sysTableInfo.TableName))
             {
-                return Err("真实表名不能为空");
+                return Err("表名不能为空");
             }
             string tableName = sysTableInfo.TableName;
-            if (string.IsNullOrEmpty(tableName))
-            {
-                tableName = sysTableInfo.TableTrueName;
-            }
             var exist = TableExists(tableName, sysTableInfo.TableTrueName);
             if (!exist.IsSuccess)
             {
                 return exist;
             }
-            string sql = "";
-            //通过配置名查找对应的sql语句
-            switch (DBType.Type)
+            var columList = _columRepository.FindAsync(t => t.Table_Id == sysTableInfo.Table_Id).Result;
+            if (columList == null)
             {
-                case (int)EFDbCurrentTypeEnum.MySql:
-                    sql = "";
-                    break;
-                default:
-                    break;
+                return Err($"没查到{tableName}表相关的列信息");
             }
+            StringBuilder attributeBuilder = new StringBuilder();
+            foreach (var column in columList)
+            {
+                //备注
+                attributeBuilder.Append("/// <summary>");
+                attributeBuilder.Append("\r\n");
+                attributeBuilder.Append("        ///" + column.ColumnCnName + "");
+                attributeBuilder.Append("\r\n");
+                attributeBuilder.Append("        /// </summary>");
+                attributeBuilder.Append("\r\n");
+                column.ColumnType = (column.ColumnType ?? "").Trim();
+                if (column.IsKey == 1)
+                {
+                    attributeBuilder.Append("        [Key]").Append("\r\n"); ;
+                }
 
+                attributeBuilder.Append("       public " + GetCSharpTypeFromDbType(column.ColumnType) + " " + column.ColumnName + " { get; set; }");
+                attributeBuilder.Append("\r\n\r\n       ");
+            }
+            attributeBuilderString = attributeBuilder.ToString();
             return OK();
 
         }
         private ResponseBase TableExists(string table_name, string tableTrueName)
         {
-            if (string.IsNullOrEmpty(table_name)|| string.IsNullOrEmpty(tableTrueName))
+            if (string.IsNullOrEmpty(table_name))
             {
                 return Err("不能创建表名为空的表");
             }
@@ -79,7 +123,7 @@ namespace Zhao56.Builder.Services
                     else
                     {
                         var tableAttr = t.GetCustomAttribute<TableAttribute>();
-                        if (tableAttr != null && tableAttr.Name.ToUpper() == tableTrueName.ToUpper())
+                        if (!string.IsNullOrEmpty(tableTrueName) &&tableAttr != null && tableAttr.Name.ToUpper() == tableTrueName.ToUpper())
                         {
                             return Err($"真实表{tableTrueName}已创建，别名为{t.Name}");
                         }
@@ -96,11 +140,11 @@ namespace Zhao56.Builder.Services
         /// <param name="nameSpace">命名空间</param>
         /// <param name="foldername">文件夹分组</param>
         /// <returns></returns>
-        public ResponseBase CreateServices(string tableName, string foldername)
+        public ResponseBase CreateServices(string tableName)
         {
-            if (string.IsNullOrEmpty(tableName) || string.IsNullOrEmpty(foldername))
+            if (string.IsNullOrEmpty(tableName))
             {
-                return Err($"表名、命名空间、文件夹分组不能为空");
+                return Err($"表名不能为空");
             }
             var table = repository.FindAsyncFirst(t => t.TableName == tableName).Result;
             if (table == null)
@@ -108,6 +152,15 @@ namespace Zhao56.Builder.Services
                 return Err($"没查到{tableName}表相关的信息");
             }
             string nameSpace = table.Namespace;
+            if (string.IsNullOrEmpty(nameSpace))
+            {
+                return Err($"表设置中命名空间不能为空");
+            }
+            string foldername = table.FolderName;
+            if (string.IsNullOrEmpty(foldername))
+            {
+                return Err($"表设置中系统项目文件夹不能为空");
+            }
             //查找项目根文件夹路径
             var programDirectory = PathHelper.GetProgramDirectoryInfo();
             //获取api路径
@@ -115,7 +168,6 @@ namespace Zhao56.Builder.Services
             string programPath = programDirectory?.FullName;
             string contentRootPath = apiDirectory?.FullName;
             //跟文件夹名称
-            string programName = programDirectory?.Name;
             //api名称
             string contentName = apiDirectory?.Name;
             if (programPath==null)
@@ -129,23 +181,37 @@ namespace Zhao56.Builder.Services
             //找到工程名
             var startName = contentName.Substring(0, contentName.IndexOf('.'));
             string bigHumpTableName = StringHelper.String2BigHump(tableName);
-            string content = FileHelper.ReadFile($"{contentRootPath}\\Template\\IRepositorys\\IRepositorieTemplate.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{BigHumpTableName}", bigHumpTableName).Replace("{StartName}", startName) ;
+            tableName = tableName.ToLower();
+            //生成entity
+            string attributeBuilderString = null;
+            var checkResult = CheckEntityAndGetColum(table, ref attributeBuilderString);
+            if (!checkResult.IsSuccess)
+            {
+                return checkResult;
+            }
+            string content = FileHelper.ReadFile($"{contentRootPath}\\Template\\Entity\\EntityTemplate.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{TableTrueName}", table.TableTrueName).Replace("{AttributeList}", attributeBuilderString).Replace("{StartName}", startName);
+            FileHelper.WriteFile($"{programPath}\\{nameSpace}\\Entities\\{foldername}\\"
+                          , $"{tableName}.cs", content);
             //生成IRepositories
-            FileHelper.WriteFile($"{programName}\\{nameSpace}\\IRepositories\\{foldername}\\" 
+            content = FileHelper.ReadFile($"{contentRootPath}\\Template\\IRepositories\\IRepositorieTemplate.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{BigHumpTableName}", bigHumpTableName).Replace("{StartName}", startName);
+            FileHelper.WriteFile($"{programPath}\\{nameSpace}\\IRepositories\\{foldername}\\"
                           , $"I{bigHumpTableName}Repository.cs", content);
             //生成 Repositories
-            content = FileHelper.ReadFile(programPath + "\\Template\\Repositories\\RepositorieTemplate.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{BigHumpTableName}", bigHumpTableName).Replace("{StartName}", startName);
-            FileHelper.WriteFile( $"{programName}\\{nameSpace}\\Repositories\\{foldername}\\"
+            content = FileHelper.ReadFile($"{contentRootPath}\\Template\\Repositories\\RepositorieTemplate.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{BigHumpTableName}", bigHumpTableName).Replace("{StartName}", startName);
+            FileHelper.WriteFile($"{programPath}\\{nameSpace}\\Repositories\\{foldername}\\"
                           , $"{bigHumpTableName}Repository.cs", content);
             //生成 IServices
-            content = FileHelper.ReadFile(programPath + "\\Template\\IServices\\IServicesTemplate.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{BigHumpTableName}", bigHumpTableName).Replace("{StartName}", startName);
-            FileHelper.WriteFile($"{programName}\\{nameSpace}\\IServices\\{foldername}\\"
+            content = FileHelper.ReadFile($"{contentRootPath}\\Template\\IServices\\IServicesTemplate.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{BigHumpTableName}", bigHumpTableName).Replace("{StartName}", startName);
+            FileHelper.WriteFile($"{programPath}\\{nameSpace}\\IServices\\{foldername}\\"
                           , $"I{bigHumpTableName}Services.cs", content);
             //生成 Services
-            content = FileHelper.ReadFile(programPath + "\\Template\\Services\\ServicesTemplate.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{BigHumpTableName}", bigHumpTableName).Replace("{StartName}", startName);
-            FileHelper.WriteFile($"{programName}\\{nameSpace}\\Services\\{foldername}\\"
+            content = FileHelper.ReadFile($"{contentRootPath}\\Template\\Services\\ServicesTemplate.html").Replace("{Namespace}", nameSpace).Replace("{TableName}", tableName).Replace("{BigHumpTableName}", bigHumpTableName).Replace("{StartName}", startName);
+            FileHelper.WriteFile($"{programPath}\\{nameSpace}\\Services\\{foldername}\\"
                           , $"{bigHumpTableName}Services.cs", content);
             //生成 controller
+            content = FileHelper.ReadFile($"{contentRootPath}\\Template\\Controllers\\ControllerTemplate.html").Replace("{Namespace}", nameSpace).Replace("{BigHumpTableName}", bigHumpTableName).Replace("{StartName}", startName);
+            FileHelper.WriteFile($"{contentRootPath}\\Controllers\\{foldername}\\"
+                          , $"{bigHumpTableName}Controller.cs", content);
             return OK();
         }
 
