@@ -99,7 +99,7 @@ namespace Zhao56.Core.Extensions.Controller
             //var loggerFactory = services.BuildServiceProvider().GetService<ILoggerFactory>();
             if (DBType.Type == (int)EFDbCurrentTypeEnum.MySql)
             {
-                services.AddDbContext<EFContext>(optionsBuilder => optionsBuilder.UseMySql(AppSettings.DbConnectionString).UseLoggerFactory(MyLoggerFactory));
+                services.AddDbContext<EFContext>(optionsBuilder => optionsBuilder.UseMySql(AppSettings.DbConnectionString, ServerVersion.AutoDetect(AppSettings.DbConnectionString)).UseLoggerFactory(MyLoggerFactory));
             }
            
             return services;

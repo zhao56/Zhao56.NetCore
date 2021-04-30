@@ -9,3 +9,4 @@ D:\study\study\Zhao56.NetCore\Zhao56.Core\obj\Debug\net5.0\Zhao56.Core.csproj.Co
 D:\study\study\Zhao56.NetCore\Zhao56.Core\obj\Debug\net5.0\Zhao56.Core.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Core\obj\Debug\net5.0\ref\Zhao56.Core.dll
 D:\study\study\Zhao56.NetCore\Zhao56.Core\obj\Debug\net5.0\Zhao56.Core.pdb
+D:\study\study\Zhao56.NetCore\Zhao56.Core\obj\Debug\net5.0\Zhao56.Core.csprojAssemblyReference.cache
